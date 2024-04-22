@@ -17,7 +17,6 @@ package types
 
 import (
 	"errors"
-	"fmt"
 	"math/big"
 
 	sdkmath "cosmossdk.io/math"
@@ -248,7 +247,7 @@ func (msg MsgEthereumTx) GetSignBytes() []byte {
 func (msg *MsgEthereumTx) Sign(ethSigner ethtypes.Signer, keyringSigner keyring.Signer) error {
 	from := msg.GetFrom()
 	if from.Empty() {
-		return fmt.Errorf("sender address not defined for message")
+		return errors.New("sender address not defined for message")
 	}
 
 	tx := msg.AsTransaction()
